@@ -17,7 +17,17 @@ namespace API_TEST.Controllers
         {
             dynamic text = System.IO.File.ReadAllText(@"C:\Users\Aviv\Desktop\newSchool\school\dotNET\API_TEST\API_TEST\DB\Raw_data OW.json");
 
-            List<IFlight> dataArr = JsonConvert.DeserializeObject <List<IFlight>>(text);
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+
+            var dataArr = JsonConvert.DeserializeObject<dynamic[]>(text, settings);
+
+            IFlight test = new IFlight(dataArr[0]);
+
+            //IFlight[] dataArr; 
 
             //Flight1 formattedData = new List<Flight1>();
 
@@ -26,7 +36,7 @@ namespace API_TEST.Controllers
             //    formattedData.Add(item);
             //}
 
-            return dataArr;
+            return test;
         }
 
 

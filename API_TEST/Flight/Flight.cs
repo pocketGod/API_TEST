@@ -5,27 +5,30 @@ namespace API_TEST.Flight
 {
     public class IFlight
     {
-        public string? ID;
-        public double AveragePrice;
-        public string CurrencySymbol;
-        public List<Segment> Segments;
+        public string? ID { get; set; }
+        public double AveragePrice { get; set; }
+        public string CurrencySymbol { get; set; }
+        public Segment[] Segments { get; set; }
 
         public class Segment
         {
-            public double SegmentDuration;
-            public string ValidatingCarrier;
-            public List<FlightLeg> Legs;
+            public double SegmentDuration { get; set; }
+            public string ValidatingCarrier { get; set; }
+            public FlightLeg[] Legs { get; set; }
 
             public Segment(dynamic seg)
             {
                 SegmentDuration = seg.SegmentDuration;
                 ValidatingCarrier = seg.ValidatingCarrier;
-                
 
-                foreach (var leg in seg.Legs)
+
+                for (int i = 0; i < seg.Legs.Count; i++)
                 {
-                    Legs.Add(new FlightLeg(leg));
+                    if (Legs != null) Legs[i] = new FlightLeg(seg.Legs[i]);
+
+                    //Legs[i] = new FlightLeg(seg.Legs[i]);
                 }
+
             }
         }
 
@@ -36,16 +39,13 @@ namespace API_TEST.Flight
             AveragePrice = flight.AveragePrice;
             CurrencySymbol = flight.CurrencySymbol;
 
-            foreach (var seg in flight.Segments)
+            for (int i = 0; i < flight.Segments.Count; i++)
             {
-                Segments.Add(new Segment(seg));
+                if (Segments != null) Segments[i] = new Segment(flight.Segments[i]);
+                //Segments[i] = new Segment(flight.Segments[i]);
             }
         }
 
-        public static implicit operator Flight1(List<Flight1> v)
-        {
-            throw new NotImplementedException();
-        }
     }
 
 

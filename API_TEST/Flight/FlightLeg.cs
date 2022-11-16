@@ -6,10 +6,10 @@ namespace API_TEST.Flight
     {
         public class DeparturePoint
         {
-            public string AirportName;
-            public string AirportCode;
-            public string City;
-            public string DateTime;
+            public string AirportName { get; set; }
+            public string AirportCode { get; set; }
+            public string City { get; set; }
+            public string DateTime { get; set; }
 
             public DeparturePoint(dynamic dep)
             {
@@ -22,10 +22,10 @@ namespace API_TEST.Flight
 
         public class ArrivalPoint
         {
-            public string AirportName;
-            public string AirportCode;
-            public string City;
-            public string DateTime;
+            public string AirportName { get; set; }
+            public string AirportCode { get; set; }
+            public string City { get; set; }
+            public string DateTime { get; set; }
 
             public ArrivalPoint(dynamic arrival)
             {
@@ -36,9 +36,9 @@ namespace API_TEST.Flight
             }
         }
 
-        public string FlightNumber;
-        public string AirlineName;
-        public string AirlineCode;
+        public string FlightNumber { get; set; }
+        public string AirlineName { get; set; }
+        public string AirlineCode { get; set; }
 
         public FlightLeg(dynamic leg)
         {
