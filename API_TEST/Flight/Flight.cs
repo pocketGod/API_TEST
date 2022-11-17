@@ -30,7 +30,7 @@ namespace API_TEST.Flight
                 ValidatingCarrier = seg.ValidatingCarrier;
 
                 //FlightLeg[] Legs = new FlightLeg[seg.Legs.Count];
-                List<FlightLeg> Legs = new List<FlightLeg>();
+                Legs = new List<FlightLeg>();
 
                 for (int i = 0; i < seg.Legs.Count; i++)
                 {
@@ -52,7 +52,8 @@ namespace API_TEST.Flight
 
             //Segment[] Segments = new Segment[flight.Segments.Count];
 
-            List<Segment> Segments = new List<Segment>();
+            Segments = new List<Segment>();
+
 
             for (int i = 0; i < flight.Segments.Count; i++)
             {
