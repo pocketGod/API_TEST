@@ -1,7 +1,6 @@
 ﻿using API_TEST.Flight;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Text.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,7 +14,9 @@ namespace API_TEST.Controllers
         [HttpGet]
         public dynamic Get()
         {
-            dynamic text = System.IO.File.ReadAllText(@"C:\Users\Aviv\Desktop\newSchool\school\dotNET\API_TEST\API_TEST\DB\Raw_data OW.json");
+            string DB1 = System.IO.File.ReadAllText(@"C:\Users\Aviv\Desktop\newSchool\school\dotNET\API_TEST\API_TEST\DB\Raw_data OW.json");
+            string DB2 = System.IO.File.ReadAllText(@"C:\Users\Aviv\Desktop\newSchool\school\dotNET\API_TEST\API_TEST\DB\Raw_data OW - 2pax .json");
+            string DB3 = System.IO.File.ReadAllText(@"C:\Users\Aviv\Desktop\newSchool\school\dotNET\API_TEST\API_TEST\DB\Raw_data RT - 2pax .json");
 
             var settings = new JsonSerializerSettings
             {
@@ -23,20 +24,20 @@ namespace API_TEST.Controllers
                 MissingMemberHandling = MissingMemberHandling.Ignore
             };
 
-            var dataArr = JsonConvert.DeserializeObject<dynamic[]>(text, settings);
+            var dataArr = JsonConvert.DeserializeObject<dynamic[]>(DB1, settings);
 
-            IFlight test = new IFlight(dataArr[0]);
+            IFlight[] formattedArr = new IFlight[dataArr.Length];
 
-            //IFlight[] dataArr; 
 
-            //Flight1 formattedData = new List<Flight1>();
 
-            //foreach (var item in dataArr)
-            //{
-            //    formattedData.Add(item);
-            //}
+            for (int i = 0; i < dataArr.Length; i++)
+            {
+                formattedArr[i] = new IFlight(dataArr[i]);
+            }
 
-            return test;
+
+
+            return formattedArr;
         }
 
 
@@ -65,4 +66,7 @@ namespace API_TEST.Controllers
         //{
         //}
     }
+
 }
+
+
