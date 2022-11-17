@@ -45,6 +45,7 @@ namespace API_TEST.Flight
         //IFlight constructor
         public IFlight(dynamic flight)
         {
+
             ID = flight.ID;
             AveragePrice = flight.AveragePrice;
             CurrencySymbol = flight.CurrencySymbol;
