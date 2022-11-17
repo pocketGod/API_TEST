@@ -15,27 +15,19 @@ namespace API_TEST.Controllers
         public dynamic Get()
         {
             string DB1 = System.IO.File.ReadAllText(@"C:\Users\Aviv\Desktop\newSchool\school\dotNET\API_TEST\API_TEST\DB\Raw_data OW.json");
-            string DB2 = System.IO.File.ReadAllText(@"C:\Users\Aviv\Desktop\newSchool\school\dotNET\API_TEST\API_TEST\DB\Raw_data OW - 2pax .json");
-            string DB3 = System.IO.File.ReadAllText(@"C:\Users\Aviv\Desktop\newSchool\school\dotNET\API_TEST\API_TEST\DB\Raw_data RT - 2pax .json");
+            //string DB2 = System.IO.File.ReadAllText(@"C:\Users\Aviv\Desktop\newSchool\school\dotNET\API_TEST\API_TEST\DB\Raw_data OW - 2pax .json");
+            //string DB3 = System.IO.File.ReadAllText(@"C:\Users\Aviv\Desktop\newSchool\school\dotNET\API_TEST\API_TEST\DB\Raw_data RT - 2pax .json");
 
-            var settings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                MissingMemberHandling = MissingMemberHandling.Ignore
-            };
+            var SerializeSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, MissingMemberHandling = MissingMemberHandling.Ignore };
 
-            var dataArr = JsonConvert.DeserializeObject<dynamic[]>(DB1, settings);
+            var dataArr = JsonConvert.DeserializeObject<dynamic[]>(DB1, SerializeSettings);
 
             IFlight[] formattedArr = new IFlight[dataArr.Length];
-
-
 
             for (int i = 0; i < dataArr.Length; i++)
             {
                 formattedArr[i] = new IFlight(dataArr[i]);
             }
-
-
 
             return formattedArr;
         }
