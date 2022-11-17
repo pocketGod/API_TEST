@@ -5,13 +5,14 @@ namespace API_TEST.Flight
 {
     public class FlightLeg
     {
-        public Station DeparturePoint;
-        public Station ArrivalPoint;
+        public Station DeparturePoint { get; set; }
+        public Station ArrivalPoint { get; set; }
 
         public string FlightNumber { get; set; }
         public string AirlineName { get; set; }
         public string AirlineCode { get; set; }
 
+        //FlightLeg constructor
         public FlightLeg(dynamic leg)
         {
             FlightNumber = leg.FlightNumber;
@@ -31,10 +32,10 @@ namespace API_TEST.Flight
 
         public Station(dynamic station)
         {
-            AirportCode = station.AirportCode.ToString();
-            AirportName = station.AirportName.ToString();
-            City = station.City.ToString();
-            DateTime = station.DateTime.ToString();
+            AirportCode = station.AirportCode;
+            AirportName = station.AirportName;
+            City = station.City;
+            DateTime = station.DateTime;
         }
     }
 }
