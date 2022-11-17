@@ -9,7 +9,9 @@ namespace API_TEST.Flight
         public double AveragePrice { get; set; }
         public string CurrencySymbol { get; set; }
 
-        public Segment[] Segments { get; set; }
+        //public Segment[] Segments { get; set; }
+
+        public List<Segment> Segments { get; set; }
 
 
 
@@ -17,7 +19,8 @@ namespace API_TEST.Flight
         {
             public double SegmentDuration { get; set; }
             public string ValidatingCarrier { get; set; }
-            public FlightLeg[] Legs { get; set; }
+            //public FlightLeg[] Legs { get; set; }
+            public List<FlightLeg> Legs { get; set; }
 
 
             //segment constructor
@@ -26,11 +29,14 @@ namespace API_TEST.Flight
                 SegmentDuration = seg.SegmentDuration;
                 ValidatingCarrier = seg.ValidatingCarrier;
 
-                FlightLeg[] Legs = new FlightLeg[seg.Legs.Count];
+                //FlightLeg[] Legs = new FlightLeg[seg.Legs.Count];
+                List<FlightLeg> Legs = new List<FlightLeg>();
 
                 for (int i = 0; i < seg.Legs.Count; i++)
                 {
-                    Legs[i] = new FlightLeg(seg.Legs[i]);
+                    //Legs[i] = new FlightLeg(seg.Legs[i]);
+
+                    Legs.Add(new FlightLeg(seg.Legs[i]));
                 }
 
             }
@@ -43,13 +49,15 @@ namespace API_TEST.Flight
             AveragePrice = flight.AveragePrice;
             CurrencySymbol = flight.CurrencySymbol;
 
-            Segment[] Segments = new Segment[flight.Segments.Count];
-            //Segment[] Segments = new Segment[1];
-            //Segments[0] = new Segment(flight.Segments[0]);
+            //Segment[] Segments = new Segment[flight.Segments.Count];
+
+            List<Segment> Segments = new List<Segment>();
 
             for (int i = 0; i < flight.Segments.Count; i++)
             {
-                Segments[i] = new Segment(flight.Segments[i]);
+                //Segments[i] = new Segment(flight.Segments[i]);
+
+                Segments.Add(new Segment(flight.Segments[i]));
             }
 
         }
